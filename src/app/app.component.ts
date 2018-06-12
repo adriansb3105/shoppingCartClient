@@ -7,5 +7,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   public title = ' shoping cart';
-  public description ="estoy aprendiendo, vamos genial"
+  public description='descripcion';
+
+show: boolean = false;
+  
+
+
+  
 }

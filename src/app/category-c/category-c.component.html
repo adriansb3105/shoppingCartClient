@@ -1,0 +1,26 @@
+<div >
+ create category
+
+<ul><li *ngFor="let pp of peliculas" [routerLink]="['detail',pp.codGenero]">{{pp.codGenero}} </li></ul>
+
+<table class="table table-dark">
+
+      <tr *ngFor="let pr of products">
+
+        <td>{{pr.name}}</td>
+        <td>{{pr.id}}</td>
+
+      </tr>
+      
+  
+  </table>
+
+  <button (click)="onClickMe()">boolean</button>
+
+  <h2>{{varr}}</h2>
+
+  <h1 *ngIf="show">condicional</h1>
+
+  <router-outlet></router-outlet>
+
+</div>
