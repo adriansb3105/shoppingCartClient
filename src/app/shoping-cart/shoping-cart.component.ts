@@ -10,6 +10,14 @@ export class ShopingCartComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+
+
+     //debe cargar los porductos del carrito del cliente que esta logeado
   }
+
+  
+
+
+
 
 }

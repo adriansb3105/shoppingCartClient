@@ -20,5 +20,10 @@ export class ProductsByCategoryComponent implements OnInit {
 
   }
 
+  addToCart(){
+
+    console.log("se agrgaron al carrito ");
+  }
+
 }
 

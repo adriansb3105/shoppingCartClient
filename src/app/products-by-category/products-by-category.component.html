@@ -1,7 +1,7 @@
-<h2>Section product by Name</h2>
+<h2>Write down the category</h2>
 <form class="form-inline">
   <label class="sr-only" for="inlineFormInput">Name</label>
-  <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Jane Doe">
+  <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" >
 
   
 
@@ -9,8 +9,8 @@
       <span class="glyphicon glyphicon-search" ></span>
       Submit</button>
   
-</form>
-          <div class="table-responsive"*ngIf="resultados">
+
+          <div class="table-responsive">
             <table class="table table-striped table-sm">
               <thead>
                 <tr>
@@ -19,6 +19,7 @@
                   <th>Price</th>
                   <th>Category</th>
                   <th> Images </th>
+                  <th>Add</th>
                 </tr>
               </thead>
               <tbody>
@@ -47,9 +48,13 @@
                       <span class="sr-only">Next</span>
                     </a>
                   </div>
+                  </td>
+                  <td>
+                      <button type="submit" class="btn btn-primary" (click)="addToCart()">Add to cart</button>
+                  </td>
                 </tr>
                
               </tbody>
             </table>
           </div>
-      
+        </form>

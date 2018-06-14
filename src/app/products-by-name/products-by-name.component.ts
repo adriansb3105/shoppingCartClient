@@ -6,7 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./products-by-name.component.css']
 })
 export class ProductsByNameComponent implements OnInit {
-  public resultados:boolean=true;
   public resultadoProductos:Array<Product>;
   public imagenesPruebas:Array<String>;
   public categoryprueba: Category= new Category("prueba categoria",false);
@@ -24,8 +23,15 @@ export class ProductsByNameComponent implements OnInit {
 
   buscarporNombre():void{
     ///// aqui rellena la lista de productos
-    this.resultados=true;
+ 
       }
+
+  addToCart(){
+
+    console.log("se agrega a carrito ")
+    //// agregar producto al carrito del cliente
+    
+  }
     
 
 }
