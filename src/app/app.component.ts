@@ -11,7 +11,7 @@ public title = ' shoping cart';
 public description='descripcion';
 public manager:boolean=false;
 public client:boolean=false;
-public managerNavBar:boolean= false;
+public managerNavBar:boolean= true;
 public clientNavBar:boolean= true;
 public loggedIn:boolean=true;
 public currentEmployee: Employee;

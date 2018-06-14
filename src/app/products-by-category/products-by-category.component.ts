@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Product } from '../products-by-name/products-by-name.component';
 
 @Component({
   selector: 'app-products-by-category',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductsByCategoryComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+
+   
+  }
 
   ngOnInit() {
   }
 
+  buscarporCategoria():void{
+
+  }
+
 }
+
