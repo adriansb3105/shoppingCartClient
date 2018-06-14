@@ -23,11 +23,11 @@ export class LoginComponent implements OnInit {
 
     if(this.adminUser){
       console.log("admin");
-      this.router.navigate(['/about']);
+      this.router.navigate(['/home-manager']);
 
     }else{
-      console.log("admin");
-      this.router.navigate(['/category']);
+      console.log("client");
+      this.router.navigate(['/home-client']);
     }
 
    }

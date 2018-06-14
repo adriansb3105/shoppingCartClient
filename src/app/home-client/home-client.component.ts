@@ -8,9 +8,15 @@ import{ActivatedRoute} from '@angular/router';
 })
 export class HomeClientComponent implements OnInit {
 
+ 
+
+
   constructor() { }
 
   ngOnInit() {
   }
 
+
+  
+  
 }

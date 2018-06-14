@@ -7,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  show: boolean = false;
   user: string;
+  singin:boolean;
 
+  showsignin():void{
+    this.singin=true;
+
+  }
   
   constructor() { 
 
@@ -18,5 +22,8 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
   }
+
+
+  
 
 }
