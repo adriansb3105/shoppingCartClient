@@ -19,6 +19,8 @@ export class ProductsByNameComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.imagenesPruebas.push("https://media.istockphoto.com/photos/plant-growing-picture-id510222832?k=6&m=510222832&s=612x612&w=0&h=Pzjkj2hf9IZiLAiXcgVE1FbCNFVmKzhdcT98dcHSdSk=");
   }
 
   buscarporNombre():void{

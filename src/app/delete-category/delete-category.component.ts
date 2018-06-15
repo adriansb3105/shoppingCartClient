@@ -13,4 +13,8 @@ export class DeleteCategoryComponent implements OnInit {
   ngOnInit() {
   }
 
+  deleteCategory():void{
+  
+  }
+  
 }

@@ -46,7 +46,6 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" routerLink="/create-product">Create Product</a>
-          <a class="dropdown-item" routerLink="/retrieve-product">Retrieve Product</a>
           <a class="dropdown-item" routerLink="/update-product">Update Product</a>
           <a class="dropdown-item" routerLink="/delete-product">Delete Product</a>
         </div>
@@ -57,9 +56,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" routerLink="/create-category">Create Category</a>
-          <a class="dropdown-item" routerLink="/retrieve-category">Retrieve Category</a>
-          <a class="dropdown-item" routerLink="/update-category">Update Category</a>
-          <a class="dropdown-item" routerLink="/delete-category">Delete Category</a>
+          <a class="dropdown-item" routerLink="/delete-category">Delete Categories</a>
         </div>
       </li>
       <li class="nav-item dropdown" *ngIf="managerNavBar">
@@ -79,9 +76,10 @@
       </li>
 
       <!-- client home-->
-      <li class="nav-item" *ngIf="clientNavBar">
+      <!--<li class="nav-item" *ngIf="clientNavBar">
         <a class="nav-link" routerLink="/update-client-information">Update your information</a>
       </li>
+    -->
       <li class="nav-item" *ngIf="clientNavBar">
         <a class="nav-link" routerLink="/my-bills">My bills</a>
       </li>
