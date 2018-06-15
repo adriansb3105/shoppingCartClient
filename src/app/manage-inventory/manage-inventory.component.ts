@@ -12,4 +12,8 @@ export class ManageInventoryComponent implements OnInit {
   ngOnInit() {
   }
 
+  addInventory():void{
+
+    
+  }
 }
