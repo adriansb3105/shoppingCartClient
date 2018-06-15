@@ -30,6 +30,11 @@ import { ProductsByCategoryComponent } from './products-by-category/products-by-
 import { BillComponent } from './bill/bill.component';
 import { MyBillsComponent } from './my-bills/my-bills.component';
 
+import { LogicService } from './logic.service';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
+import { FormsModule } from '@angular/forms';
+
 const appRoutes:Routes =[
   {path:'home',component: HomeComponent},
   {path:'login',component: LoginComponent},
@@ -103,9 +108,13 @@ const appRoutes:Routes =[
  
   ],
   imports: [
-    BrowserModule, RouterModule.forRoot(appRoutes)
+    BrowserModule,
+    RouterModule.forRoot(appRoutes),
+    HttpClientModule,
+    HttpModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [ LogicService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,73 +1,45 @@
 import { Component, OnInit } from '@angular/core';
+import { Product } from '../model/Product.model';
+import { Category } from '../model/Category.model';
+import { LogicService } from '../logic.service';
+import { ShoppingCart } from '../model/ShoppingCart.model';
+import { Client } from '../model/Client.model';
 
 @Component({
-  selector: 'app-products-by-name',
-  templateUrl: './products-by-name.component.html',
-  styleUrls: ['./products-by-name.component.css']
+	selector: 'app-products-by-name',
+	templateUrl: './products-by-name.component.html',
+	styleUrls: ['./products-by-name.component.css']
 })
+
 export class ProductsByNameComponent implements OnInit {
-  public resultadoProductos:Array<Product>;
-  public imagenesPruebas:Array<String>;
-  public categoryprueba: Category= new Category("prueba categoria",false);
-  public productosPrueba:Product[];
-  public imagenprueba:String="https://media.istockphoto.com/photos/plant-growing-picture-id510222832?k=6&m=510222832&s=612x612&w=0&h=Pzjkj2hf9IZiLAiXcgVE1FbCNFVmKzhdcT98dcHSdSk=";
-  public product = new Product(1,"CAJAS","DE CARTON",1,true,new Category("accesorios",true),this.imagenesPruebas);
-  
-  constructor() { 
+	public products: Array<Product>;
+	public shoppingCart: ShoppingCart;
 
-    
-  }
-
-  ngOnInit() {
-
-    this.imagenesPruebas.push("https://media.istockphoto.com/photos/plant-growing-picture-id510222832?k=6&m=510222832&s=612x612&w=0&h=Pzjkj2hf9IZiLAiXcgVE1FbCNFVmKzhdcT98dcHSdSk=");
-  }
-
-  buscarporNombre():void{
-    ///// aqui rellena la lista de productos
- 
-      }
-
-  addToCart(){
-
-    console.log("se agrega a carrito ")
-    //// agregar producto al carrito del cliente
-    
-  }
-    
-
-}
-
-export class Product{
-  public productId: number;
-	public name:String;
-	public description:String;
-	public price:number;
-	public  deleted:boolean;
-	public  category:Category;
-  public productImages:Array<String>;
-  constructor(productId?:number,name?:String,description?:String,
-    price?:number,deleted?:boolean, category?:Category,
-     productImages?:Array<String>){
-
-    this.productId=productId;
-    this.name=name;
-    this.description=description;
-    this.price=price;
-    this.deleted=deleted;
-    this.category=category;
-    this.productImages=productImages;
-  }
-
-
-}
-
-export class Category{
-	public name:String;
-  public  deleted:boolean;
-  constructor(name?:String,deleted?:boolean){
-    this.deleted=deleted;
-    this.name=name;
-  }
+	shoppingCartId: number;
+    quantity:number;
+    dateCreated:String;
+    deleted:boolean;
+    client:Client;
 	
+	constructor(private logicService: LogicService) {
+		this.products = new Array;
+	}
+
+	ngOnInit() {
+		this.logicService.productsByName().subscribe(data => {
+			this.products = data;
+		});
+	}
+
+	getProducts(): Product[] {
+		return this.products;
+	}
+
+	addToCart(product: Product) {
+		this.client = new Client(1, "adrian@mail.com", "Adrian", "Serrano", "abc123", "Cartago", "30106", "88888888", "Al norte de la plaza", false);
+
+		this.shoppingCart = new ShoppingCart(this.shoppingCartId, this.quantity, this.dateCreated,
+					this.deleted, this.client, product);
+		this.logicService.addToCart(this.shoppingCart).subscribe(data => {alert("Se ha agregado el producto");});
+	}
 }
