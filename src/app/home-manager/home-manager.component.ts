@@ -8,7 +8,9 @@ import{ActivatedRoute} from '@angular/router';
 })
 export class HomeManagerComponent implements OnInit {
 
-  constructor() { }
+  constructor(){
+    console.log("manager");
+  }
 
   ngOnInit() {
   }

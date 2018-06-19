@@ -36,7 +36,7 @@ export class ProductsByNameComponent implements OnInit {
 	}
 
 	addToCart(product: Product) {
-		this.client = new Client(1, "adrian@mail.com", "Adrian", "Serrano", "abc123", "Cartago", "30106", "88888888", "Al norte de la plaza", false);
+		this.client = this.logicService.getClient();
 
 		this.shoppingCart = new ShoppingCart(this.shoppingCartId, this.quantity, this.dateCreated,
 					this.deleted, this.client, product);
