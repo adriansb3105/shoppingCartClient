@@ -10,8 +10,12 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
 
 	constructor(private logicService: LogicService, private router: Router) {
-		if(this.logicService.isLoggedIn){
-			//this.router.navigate(['/home-client']);
+		if(this.logicService.isLoggedIn()){
+			if(this.logicService.getEmployee()){
+				this.router.navigate(['/home-manager']);
+			}else if(this.logicService.getClient()){
+				this.router.navigate(['/home-client']);
+			}
 		}
 		console.log("home");
 	}

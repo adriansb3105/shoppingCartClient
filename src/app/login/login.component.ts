@@ -19,26 +19,44 @@ export class LoginComponent implements OnInit {
 	isEmployee: boolean;
 
 	constructor(private route: ActivatedRoute, private router: Router, private logicService: LogicService) {
+		console.log('login - isLogged', this.logicService.isLoggedIn());
 		this.correctUser = true;
+		if(this.logicService.isLoggedIn()){
+			if(this.logicService.getClient()){
+				this.router.navigate(['/home-client']);
+			}else if(this.logicService.getEmployee()){
+				this.router.navigate(['/home-manager']);
+			}
+		}
 	}
 
 	login(): void {
 		if(this.isEmployee){
-			this.logicService.loginEmployee(this.code, this.email, this.password);
-
+			this.logicService.loginEmployee(this.code, this.email, this.password).pipe(first()).subscribe(data => {
+				console.log('employee', data);
+				if(!this.isEmpty(data) && data.hasOwnProperty("_body") && data._body != ""){
+					this.correctUser = true;
+					this.logicService.setEmployee(data);
+					this.logicService.setLoggedIn();
+				
+					this.router.navigate(['/home-manager']);
+				}else{
+					this.correctUser = false;
+				}
+			});
 		}else if(!this.isEmployee){
 			this.logicService.loginClient(this.email, this.password).pipe(first()).subscribe(data => {
 				console.log('cliente', data);
 				
-				if(!this.isEmpty(data) && data._body != ""){
+				if(!this.isEmpty(data) && data.hasOwnProperty("_body") && data._body != ""){
 					this.correctUser = true;
 					this.logicService.setClient(data);
+					this.logicService.setLoggedIn();
 				
 					this.router.navigate(['/home-client']);
 				}else{
 					this.correctUser = false;
 				}
-			
 			});
 		}
 	}

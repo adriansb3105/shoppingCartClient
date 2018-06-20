@@ -10,14 +10,14 @@
 
 	<div *ngIf="isEmployee">
 		<label for="code" class="sr-only">Employee code</label>
-		<input type="text" id="code" name="code" class="form-control" placeholder="Employee code" required [(ngModel)]="code">
+		<input type="password" id="code" name="code" class="form-control" placeholder="Employee code" required [(ngModel)]="code">
 	</div>	
 
 	<button class="btn btn-lg btn-primary btn-block" type="submit" (click)="login()">Sign in</button>
 
 	<br />
 	<div class="center" *ngIf="!correctUser">
-		<p class="red">El usuario o la contraseña ingresados son incorrectos</p>
+		<p class="red">Credentials entered were incorrect</p>
 	</div>
 
 	<label>

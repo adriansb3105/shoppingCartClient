@@ -8,6 +8,7 @@ import { Category } from './model/Category.model';
 import { ShoppingCart } from "./model/ShoppingCart.model";
 import { Bill } from "./model/Bill.model";
 import { Client } from "./model/Client.model";
+import { Employee } from "./model/Employee.model";
 
 @Injectable()
 export class LogicService {
@@ -15,7 +16,8 @@ export class LogicService {
   private headers;
   private bill: Bill;
   private static client: Client;
-  private loggedIn: boolean;
+  private static employee: Employee;
+  private static loggedIn: boolean;
 
     constructor(private http: Http){
         this.headers = new Headers();
@@ -32,11 +34,13 @@ export class LogicService {
     }
 
     loginEmployee(employeeCode: String, email:String, password: String){
-
+        return this.http.post(this.url + 'employees/login/', {employeeCode, email, password}, { headers: this.headers})
+        .pipe(map((response:any) => {
+            return response;
+        } ));
     }
     
     productsByName(): Observable<Product[]> {
-        console.log("Auth en logic "+ this.headers.get('Authorization'));
         return this.http.get(this.url + "products/", { headers: this.headers})
         .pipe(map(response => response.json()))
     }
@@ -63,11 +67,25 @@ export class LogicService {
         return LogicService.client;
     }
 
+    setEmployee(e: Employee): void{
+        LogicService.employee = new Employee(e.employeeId, e.email, e.firstName, e.lastName, e.password, e.employeeCode, e.departament, e.deleted);
+    }
+
+    getEmployee(): Employee{
+        return LogicService.employee;
+    }
+
+    setLoggedIn(): void{
+        LogicService.loggedIn = true;
+    }
+
     isLoggedIn(): boolean{
-        return this.loggedIn;
+        return LogicService.loggedIn;
     }
 
     logout(): void{
-        this.loggedIn = false;
+        LogicService.loggedIn = false;
+        LogicService.client = null;
+        LogicService.employee = null;
     }
 }

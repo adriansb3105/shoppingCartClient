@@ -4,6 +4,8 @@ import { Category } from '../model/Category.model';
 import { LogicService } from '../logic.service';
 import { ShoppingCart } from '../model/ShoppingCart.model';
 import { Client } from '../model/Client.model';
+import { Router } from '@angular/router';
+import { FilterPipe } from '../filter.pipe';
 
 @Component({
 	selector: 'app-products-by-name',
@@ -19,9 +21,13 @@ export class ProductsByNameComponent implements OnInit {
     quantity:number;
     dateCreated:String;
     deleted:boolean;
-    client:Client;
+	client:Client;
 	
-	constructor(private logicService: LogicService) {
+	
+	constructor(private logicService: LogicService, private router: Router, private filterPipe: FilterPipe) {
+		//if(!this.logicService.isLoggedIn()){
+		//	this.router.navigate(['/login']);
+		//}
 		this.products = new Array;
 	}
 
