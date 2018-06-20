@@ -12,44 +12,35 @@ import { Client } from '../model/Client.model';
 })
 
 export class LoginComponent implements OnInit {
-
-	private adminUser: boolean = true;
+	correctUser: boolean;
 	email: String;
 	password: String;
+	code: String;
+	isEmployee: boolean;
 
 	constructor(private route: ActivatedRoute, private router: Router, private logicService: LogicService) {
-		if(this.logicService.isLoggedIn){
-		//	this.router.navigate(['/home-client']);
-		}
+		this.correctUser = true;
 	}
 
 	login(): void {
-		
-		this.logicService.login(this.email, this.password).pipe(first()).subscribe(data => {
-			console.log(data);
-			
-			//if(data.){
-				this.logicService.setAuthorization("Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ3QHcudyIsImV4cCI6MTUzMDI4MDQyOH0.u5xV7hMKAhrBavexkfe4XtrgCa8AXrs22P_2Q9OcxaMGNwO1H5AW8q0f77s1G8i7gRa_StsfYPBadk_str5oyQ");
-			//}
-		
-			if (!this.isEmpty(this.logicService.getAuthorization)) {
+		if(this.isEmployee){
+			this.logicService.loginEmployee(this.code, this.email, this.password);
 
-				this.logicService.loginUser(this.email).subscribe(data => {
-					//this.authorization = data;
+		}else if(!this.isEmployee){
+			this.logicService.loginClient(this.email, this.password).pipe(first()).subscribe(data => {
+				console.log('cliente', data);
+				
+				if(!this.isEmpty(data) && data._body != ""){
+					this.correctUser = true;
 					this.logicService.setClient(data);
-				});
-			
-				//if (this.adminUser) {
-				//	console.log("admin");
-				//	this.router.navigate(['/home-manager']);
-
-				//} else {
-					console.log("client");
+				
 					this.router.navigate(['/home-client']);
-				//}
-
-			}
-		});
+				}else{
+					this.correctUser = false;
+				}
+			
+			});
+		}
 	}
 
 	isEmpty(prop): boolean{

@@ -14,8 +14,7 @@ export class LogicService {
   private url = 'http://localhost:8080/api/';
   private headers;
   private bill: Bill;
-  private client: Client;
-  private static authorization: String;
+  private static client: Client;
   private loggedIn: boolean;
 
     constructor(private http: Http){
@@ -25,29 +24,18 @@ export class LogicService {
         this.headers.append('Access-Control-Allow-Origin', '*');
     }
 
-    login(email:String, password: String){
-        return this.http.post('http://localhost:8080/login', {email, password}, { headers: this.headers})
+    loginClient(email:String, password: String){
+        return this.http.post(this.url + 'clients/login/', {email, password}, { headers: this.headers})
         .pipe(map((response:any) => {
             return response;
-            //return response;
-            //console.log(response.headers.get('Authorization'));
-            //if (response && response.token) {
-            //    //localStorage.setItem('currentUser', JSON.stringify({ email, token: response.token }));
-            //    console.log(JSON.stringify({ email, token: response.token }));
-            //}
         } ));
     }
 
-    loginUser(email: String): Observable<Client>{
-        this.headers.append('Authorization', this.getAuthorization());
-        this.loggedIn = true;
+    loginEmployee(employeeCode: String, email:String, password: String){
 
-        return this.http.post(this.url + 'clients/login_user', email, { headers: this.headers})
-        .pipe(map(response => response.json()));
     }
     
     productsByName(): Observable<Product[]> {
-        this.headers.append('Authorization', this.getAuthorization());
         console.log("Auth en logic "+ this.headers.get('Authorization'));
         return this.http.get(this.url + "products/", { headers: this.headers})
         .pipe(map(response => response.json()))
@@ -65,24 +53,14 @@ export class LogicService {
 
         //this.bill = this.http.post(this.url + 'bills/', this.bill, { headers: this.headers})
         //.pipe(map(response => response.json()));
-
-
     }
 
     setClient(c: Client): void{
-        this.client = new Client(c.clientId, c.email, c.firstName, c.lastName, c.password, c.city, c.postalCode, c.telephone, c.description, c.deleted);
+        LogicService.client = new Client(c.clientId, c.email, c.firstName, c.lastName, c.password, c.city, c.postalCode, c.telephone, c.description, c.deleted);
     }
 
     getClient(): Client{
-        return this.client;
-    }
-
-    setAuthorization(a: String): void{
-        LogicService.authorization = a;
-    }
-
-    getAuthorization(): String{
-        return LogicService.authorization;
+        return LogicService.client;
     }
 
     isLoggedIn(): boolean{
@@ -90,7 +68,6 @@ export class LogicService {
     }
 
     logout(): void{
-        this.setAuthorization("");
         this.loggedIn = false;
     }
 }
