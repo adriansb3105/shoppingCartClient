@@ -20,6 +20,7 @@ export class ProductsByNameComponent implements OnInit {
     dateCreated:String;
     deleted:boolean;
 	client:Client;
+	isProductEmpty: boolean;
 	
 	
 	constructor(private logicService: LogicService, private router: Router, private filterPipe: FilterPipe) {
@@ -30,8 +31,10 @@ export class ProductsByNameComponent implements OnInit {
 	}
 
 	ngOnInit() {
+		this.isProductEmpty = true;
 		this.logicService.productsByName().subscribe(data => {
 			this.products = data;
+			this.isProductEmpty = false;
 		});
 	}
 

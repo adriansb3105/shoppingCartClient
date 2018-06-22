@@ -1,7 +1,11 @@
 <h3 class="">Filter products</h3>
 <input class="form-control" [(ngModel)]="searchText" placeholder="Search a product">
 
-<form class="form-inline top">
+<div class="loader-container top" *ngIf="isProductEmpty">
+	<div class="loader"></div>
+</div>
+
+<form *ngIf="!isProductEmpty" class="form-inline top">
 	<div class="table-responsive">
 		<table class="table table-striped table-sm">
 			<thead>
