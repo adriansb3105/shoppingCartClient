@@ -13,12 +13,10 @@ export class OrderDetail{
     public product : Product;
     
 
-    constructor(orderDetailId: number, quantity: number, price: number, tax: number, deleted: boolean, bill: Bill, product : Product){
-        this.orderDetailId = orderDetailId;
+    constructor(quantity: number, price: number, tax: number, bill: Bill, product : Product){
         this.quantity = quantity;
         this.price = price;
         this.tax = tax;
-        this.deleted = deleted;
         this.bill = bill;
         this.product = product;
     }  

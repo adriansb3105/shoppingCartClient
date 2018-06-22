@@ -50,6 +50,11 @@ export class LogicService {
         .pipe(map(response => response.json()));
     }
 
+    getShoppingCarts(): Observable<ShoppingCart[]>{
+        return this.http.get(this.url + "shopping_carts/", { headers: this.headers})
+        .pipe(map(response => response.json()))
+    }
+
     generatePurchase(product : Product, quantity : number){
         //this.client = new Client(1, "adrian@mail.com", "Adrian", "Serrano", "abc123", "Cartago", "30106", "88888888", "Al norte de la plaza", false);
 

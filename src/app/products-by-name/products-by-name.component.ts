@@ -16,9 +16,7 @@ import { FilterPipe } from '../filter.pipe';
 export class ProductsByNameComponent implements OnInit {
 	public products: Array<Product>;
 	public shoppingCart: ShoppingCart;
-
 	shoppingCartId: number;
-    quantity:number;
     dateCreated:String;
     deleted:boolean;
 	client:Client;
@@ -44,7 +42,7 @@ export class ProductsByNameComponent implements OnInit {
 	addToCart(product: Product) {
 		this.client = this.logicService.getClient();
 
-		this.shoppingCart = new ShoppingCart(this.shoppingCartId, this.quantity, this.dateCreated,
+		this.shoppingCart = new ShoppingCart(this.shoppingCartId, 0, this.dateCreated,
 					this.deleted, this.client, product);
 		this.logicService.addToCart(this.shoppingCart).subscribe(data => {alert("Se ha agregado el producto");});
 	}
