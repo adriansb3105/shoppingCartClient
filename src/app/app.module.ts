@@ -26,7 +26,6 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { ShopingCartComponent } from './shoping-cart/shoping-cart.component';
 import { UpdateClientInformationComponent } from './update-client-information/update-client-information.component';
 import { ProductsByNameComponent } from './products-by-name/products-by-name.component';
-import { ProductsByCategoryComponent } from './products-by-category/products-by-category.component';
 import { BillComponent } from './bill/bill.component';
 import { MyBillsComponent } from './my-bills/my-bills.component';
 
@@ -71,8 +70,7 @@ const appRoutes: Routes = [
 	{ path: 'sign-in', component: SignInComponent },
 	{ path: 'shoping-cart', component: ShopingCartComponent },
 	{ path: 'update-client-information', component: UpdateClientInformationComponent },
-	{ path: 'products-by-name', component: ProductsByNameComponent },
-	{ path: 'products-by-category', component: ProductsByCategoryComponent },
+	{ path: 'products', component: ProductsByNameComponent },
 	{ path: 'bill', component: BillComponent },
 	{ path: 'my-bills', component: MyBillsComponent },
 	{ path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -106,7 +104,6 @@ const appRoutes: Routes = [
 		ShopingCartComponent,
 		UpdateClientInformationComponent,
 		ProductsByNameComponent,
-		ProductsByCategoryComponent,
 		BillComponent,
 		MyBillsComponent,
 		FilterPipe

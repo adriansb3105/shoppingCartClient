@@ -9,10 +9,11 @@
 					<th>Quantity</th>
 					<th>Date created</th>
 					<th>Product</th>
+					<th>Images</th>
 				</tr>
 			</thead>
 			<tbody>
-
+				<div class="top center loader" *ngIf="isShoppingCartEmpty"></div>
 				<tr *ngFor="let cart of getShoppingCarts()">
 					<td>
 						<input type="checkbox" id="{{cart.shoppingCartId}}"  name="{{cart.shoppingCartId}}" (change)="checkProduct($event)"/>
@@ -52,7 +53,7 @@
 			</tbody>
 		</table>
 
-		<button type="submit" class="btn btn-primary" (click)="generatePurchase()">
+		<button type="submit" class="btn btn-primary" (click)="generatePurchase()" *ngIf="!isShoppingCartEmpty">
 			<span class="glyphicon glyphicon-search"></span>
 			Generate order</button>
 	</div>
