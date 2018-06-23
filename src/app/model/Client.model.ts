@@ -11,9 +11,8 @@ export class Client{
     public description:String;
     public deleted:boolean;
 
-    constructor(clientId: number, email:String, firstName:String, lastName:String, password:String,
-                city:String, postalCode:String, telephone:String, description:String, deleted:boolean){
-        this.clientId = clientId;
+    constructor(email:String, firstName:String, lastName:String, password:String,
+                city:String, postalCode:String, telephone:String, description:String){
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -22,6 +21,5 @@ export class Client{
         this.postalCode = postalCode;
         this.telephone = telephone;
         this.description = description;
-        this.deleted = deleted;
     }  
 }

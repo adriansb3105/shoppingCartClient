@@ -3,6 +3,10 @@ import { LogicService } from '../logic.service';
 import { Product } from '../model/Product.model';
 import { ShoppingCart } from '../model/ShoppingCart.model';
 import { OrderDetail } from '../model/OrderDetail.model';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
+import { Bill } from '../model/Bill.model';
+import { Client } from '../model/Client.model';
 
 @Component({
 	selector: 'app-shoping-cart',
@@ -15,7 +19,11 @@ export class ShopingCartComponent implements OnInit {
 	private orderDetail: OrderDetail;
 	isShoppingCartEmpty: boolean;
 
-	constructor(private logicService: LogicService) {
+
+	constructor(private logicService: LogicService, private router: Router) {
+		if (!this.logicService.isLoggedIn()) {
+			this.router.navigate(['/login']);
+		}
 		this.shoppingCarts = new Array;
 		this.orderDetails = {};
 	}
@@ -43,6 +51,7 @@ export class ShopingCartComponent implements OnInit {
 
 	onQuantityChange(id, evt) {
 		this.getShoppingCartById(id).quantity = Number(evt.target.value);
+		//	console.log(this.getShoppingCartById(id));
 	}
 
 	checkProduct(obj) {
@@ -51,8 +60,8 @@ export class ShopingCartComponent implements OnInit {
 		} else {
 			delete this.orderDetails[obj.target.id];
 		}
-		
-		console.log(this.orderDetails);
+
+		//	console.log(this.orderDetails);
 	}
 
 	createOrderDetail(obj): OrderDetail {
@@ -66,9 +75,42 @@ export class ShopingCartComponent implements OnInit {
 
 	generatePurchase() {
 		if (!this.isEmpty(this.orderDetails)) {
-			
+			Swal({
+				title: 'Are you sure?',
+				text: 'It will generate an order with the selected items',
+				type: 'warning',
+				showCancelButton: true,
+				confirmButtonText: 'Yes, generate it!',
+				cancelButtonText: 'No, cancel'
+			}).then((result) => {
+				let billId: number;
+				if (result.value) {
+
+					let totalValue: number = 0;
+					//let billId: number = 0;
+
+					for (let key in this.orderDetails) {
+						totalValue += this.orderDetails[key].price * this.orderDetails[key].quantity
+					}
+
+					let client: Client = this.logicService.getClient();
+					let bill: Bill = new Bill(new Date(), totalValue, client);
+
+					this.logicService.generateBill(bill).subscribe(data => {
+						//billId = data.billId;
+						//console.log('billId', billId);
+
+						for (let key in this.orderDetails) {
+							this.orderDetails[key].bill = data;
+						}
+
+						this.logicService.generateOrderDetail(this.orderDetails);
+						Swal('Yay!', 'Your purchase has been done!', 'success');
+					});
+				}
+			})
 		} else {
-			alert("Debe seleccionar al menos un producto");
+			Swal('Oops...', 'Select at least one item!', 'error');
 		}
 	}
 

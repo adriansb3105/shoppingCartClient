@@ -46,13 +46,13 @@ export class LoginComponent implements OnInit {
 			});
 		}else if(!this.isEmployee){
 			this.logicService.loginClient(this.email, this.password).pipe(first()).subscribe(data => {
-				console.log('cliente', data);
+				
 				
 				if(!this.isEmpty(data) && data.hasOwnProperty("_body") && data._body != ""){
 					this.correctUser = true;
 					this.logicService.setClient(data);
 					this.logicService.setLoggedIn();
-				
+					console.log('cliente - login', data);
 					this.router.navigate(['/home-client']);
 				}else{
 					this.correctUser = false;

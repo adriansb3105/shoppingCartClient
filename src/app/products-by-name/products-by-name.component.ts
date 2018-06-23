@@ -24,9 +24,9 @@ export class ProductsByNameComponent implements OnInit {
 	
 	
 	constructor(private logicService: LogicService, private router: Router, private filterPipe: FilterPipe) {
-		//if(!this.logicService.isLoggedIn()){
-		//	this.router.navigate(['/login']);
-		//}
+		if(!this.logicService.isLoggedIn()){
+			this.router.navigate(['/login']);
+		}
 		this.products = new Array;
 	}
 

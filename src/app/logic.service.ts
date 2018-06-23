@@ -15,8 +15,7 @@ export class LogicService {
   private url = 'http://localhost:8080/api/';
   private headers;
   private bill: Bill;
-  private static client: Client;
-  private static employee: Employee;
+  private employee: Employee;
   private static loggedIn: boolean;
 
     constructor(private http: Http){
@@ -55,29 +54,33 @@ export class LogicService {
         .pipe(map(response => response.json()))
     }
 
-    generatePurchase(product : Product, quantity : number){
-        //this.client = new Client(1, "adrian@mail.com", "Adrian", "Serrano", "abc123", "Cartago", "30106", "88888888", "Al norte de la plaza", false);
-
-        //this.bill = new Bill(1, "20180303", product.price * quantity, false, this.client);
-
-        //this.bill = this.http.post(this.url + 'bills/', this.bill, { headers: this.headers})
-        //.pipe(map(response => response.json()));
+    generateBill(bill: Bill): Observable<Bill>{
+        return this.http.post(this.url + 'bills/', bill, { headers: this.headers})
+        .pipe(map(response => response.json()));
     }
 
-    setClient(c: Client): void{
-        LogicService.client = new Client(c.clientId, c.email, c.firstName, c.lastName, c.password, c.city, c.postalCode, c.telephone, c.description, c.deleted);
+    generateOrderDetail(orderDetails): void{
+        for (let key in orderDetails) {
+            console.log(orderDetails[key]);
+            this.http.post(this.url + 'order_details/', orderDetails[key], { headers: this.headers})
+            .pipe(map(response => response.json())).subscribe(data => {console.log(data);});;
+        }
+    }
+
+    setClient(c): void{
+        window.localStorage.setItem('client', c._body);
     }
 
     getClient(): Client{
-        return LogicService.client;
+        return JSON.parse(window.localStorage.getItem('client'));
     }
 
     setEmployee(e: Employee): void{
-        LogicService.employee = new Employee(e.employeeId, e.email, e.firstName, e.lastName, e.password, e.employeeCode, e.departament, e.deleted);
+        this.employee = new Employee(e.employeeId, e.email, e.firstName, e.lastName, e.password, e.employeeCode, e.departament, e.deleted);
     }
 
     getEmployee(): Employee{
-        return LogicService.employee;
+        return this.employee;
     }
 
     setLoggedIn(): void{
@@ -90,7 +93,7 @@ export class LogicService {
 
     logout(): void{
         LogicService.loggedIn = false;
-        LogicService.client = null;
-        LogicService.employee = null;
+        localStorage.removeItem("client");
+        
     }
 }
