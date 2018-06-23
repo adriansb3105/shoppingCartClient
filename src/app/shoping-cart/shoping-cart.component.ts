@@ -97,13 +97,10 @@ export class ShopingCartComponent implements OnInit {
 					let bill: Bill = new Bill(new Date(), totalValue, client);
 
 					this.logicService.generateBill(bill).subscribe(data => {
-						//billId = data.billId;
-						//console.log('billId', billId);
-
 						for (let key in this.orderDetails) {
 							this.orderDetails[key].bill = data;
 						}
-
+						
 						this.logicService.generateOrderDetail(this.orderDetails);
 						Swal('Yay!', 'Your purchase has been done!', 'success');
 					});

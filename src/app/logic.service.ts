@@ -38,6 +38,13 @@ export class LogicService {
             return response;
         } ));
     }
+
+    generateClient(client: Client): Observable<Client>{
+        return this.http.post(this.url + 'clients/', client, { headers: this.headers})
+        .pipe(map((response:any) => {
+            return response;
+        } ));
+    }
     
     productsByName(): Observable<Product[]> {
         return this.http.get(this.url + "products/", { headers: this.headers})
@@ -93,7 +100,6 @@ export class LogicService {
 
     logout(): void{
         LogicService.loggedIn = false;
-        localStorage.removeItem("client");
-        
+        window.localStorage.removeItem("client");   
     }
 }

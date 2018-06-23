@@ -1,38 +1,39 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 import { NgModule } from '@angular/core';
-import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
-import { AboutComponent } from './about/about.component';
-import { CategoryComponent } from './categoryPrueba/category.component';
-import { CategoryCComponent } from './category-c/category-c.component';
-import { LoginComponent } from './login/login.component';
+
+import { UpdateClientInformationComponent } from './update-client-information/update-client-information.component';
+import { ShopingcartReportsComponent } from './shopingcart-reports/shopingcart-reports.component';
+import { BusinesInformationComponent } from './busines-information/busines-information.component';
+import { RetrieveCategoryComponent } from './retrieve-category/retrieve-category.component';
+import { ManageInventoryComponent } from './manage-inventory/manage-inventory.component';
+import { InsertInventoryComponent } from './insert-inventory/insert-inventory.component';
+import { RetrieveProductComponent } from './retrieve-product/retrieve-product.component';
+import { ProductsByNameComponent } from './products-by-name/products-by-name.component';
 import { CreateCategoryComponent } from './create-category/create-category.component';
 import { UpdateCategoryComponent } from './update-category/update-category.component';
 import { DeleteCategoryComponent } from './delete-category/delete-category.component';
 import { CreateProductComponent } from './create-product/create-product.component';
 import { UpdateProductComponent } from './update-product/update-product.component';
 import { DeleteProductComponent } from './delete-product/delete-product.component';
-import { ManageInventoryComponent } from './manage-inventory/manage-inventory.component';
-import { ShopingcartReportsComponent } from './shopingcart-reports/shopingcart-reports.component';
-import { BusinesInformationComponent } from './busines-information/busines-information.component';
-import { InsertInventoryComponent } from './insert-inventory/insert-inventory.component';
-import { RetrieveCategoryComponent } from './retrieve-category/retrieve-category.component';
-import { RetrieveProductComponent } from './retrieve-product/retrieve-product.component';
-import { LogoutComponent } from './logout/logout.component';
+import { ShopingCartComponent } from './shoping-cart/shoping-cart.component';
 import { HomeManagerComponent } from './home-manager/home-manager.component';
 import { HomeClientComponent } from './home-client/home-client.component';
-import { RouterModule, Routes } from '@angular/router';
-import { SignInComponent } from './sign-in/sign-in.component';
-import { ShopingCartComponent } from './shoping-cart/shoping-cart.component';
-import { UpdateClientInformationComponent } from './update-client-information/update-client-information.component';
-import { ProductsByNameComponent } from './products-by-name/products-by-name.component';
-import { BillComponent } from './bill/bill.component';
+import { CategoryComponent } from './categoryPrueba/category.component';
+import { CategoryCComponent } from './category-c/category-c.component';
 import { MyBillsComponent } from './my-bills/my-bills.component';
+import { SignInComponent } from './sign-in/sign-in.component';
+import { LogoutComponent } from './logout/logout.component';
+import { AboutComponent } from './about/about.component';
+import { LoginComponent } from './login/login.component';
+import { RouterModule, Routes } from '@angular/router';
+import { BillComponent } from './bill/bill.component';
+import { HomeComponent } from './home/home.component';
+import { AppComponent } from './app.component';
 
 import { LogicService } from './logic.service';
-import { HttpClientModule } from '@angular/common/http';
-import { HttpModule } from '@angular/http';
-import { FormsModule } from '@angular/forms';
 import { FilterPipe } from './filter.pipe';
 
 const appRoutes: Routes = [
@@ -77,6 +78,7 @@ const appRoutes: Routes = [
 	{ path: '**', redirectTo: '/home', pathMatch: 'full' }
 
 ];
+
 @NgModule({
 	declarations: [
 		AppComponent,
@@ -115,7 +117,10 @@ const appRoutes: Routes = [
 		HttpModule,
 		FormsModule
 	],
-	providers: [LogicService, FilterPipe],
+	providers: [
+		LogicService,
+		FilterPipe
+	],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }

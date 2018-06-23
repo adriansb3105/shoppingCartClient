@@ -1,70 +1,68 @@
-
-
 <form class="form-signin">
-    <div class="text-center mb-4">
-      <h1 class="h3 mb-3 font-weight-normal">Sign in</h1>
-     
-    </div>
-    <div class="div">
-        <label for="inputEmail">Email address</label>
-    </div>
-    <div class="form-label-group">
-      <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-      
-    </div>
-<div class="di">
-    <label for="inputPassword">Password</label>
-</div>
-    <div class="form-label-group">
-      <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-      
-    </div>
-<div class="di">
-    <label for="firstName">First name</label>
-</div>
-    <div class="form-label-group">
-      
-        <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
-        
-      </div>
-      <div class="div">
-        <label for="lastName">Last name</label>
-      </div>
-      <div class="form-label-group">
-        
-        <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
-        </div>
+	<div class="text-center mb-4">
+		<h1 class="h3 mb-3 font-weight-normal">Sign in</h1>
 
-        <div class="div">
-                <label for="lastName">City</label>
-        </div>
-        <div class="form-label-group">
-                
-            <input type="text" class="form-control" id="city" placeholder="" value="" required>
-        </div>
+	</div>
+	<div class="div">
+		<label for="inputEmail">Email address</label>
+	</div>
+	<div class="form-label-group">
+		<input type="email" id="inputEmail" name="inputEmail" class="form-control" placeholder="Email address" required autofocus [(ngModel)]="inputEmail">
 
-        <div class="div">
-             <label for="lastName">Postal code</label>
-        </div>
-        <div class="form-label-group">
-                        
-            <input type="text" class="form-control" id="postalcode" placeholder="" value="" required>
-        </div>
-        <div class="div">
-                <label for="lastName">Telephone</label>
-           </div>
-           <div class="form-label-group">
-                           
-               <input type="text" class="form-control" id="telephone" placeholder="" value="" required>
-           </div>
-           <div class="div">
-                <label for="lastName">Adress</label>
-           </div>
-           <div class="form-label-group">
-                           
-               <input type="text" class="form-control" id="description" placeholder="" value="" required>
-           </div>
+	</div>
+	<div class="di">
+		<label for="inputPassword">Password</label>
+	</div>
+	<div class="form-label-group">
+		<input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="Password" required [(ngModel)]="inputPassword">
 
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-    <p class="mt-5 mb-3 text-muted text-center">&copy; Shopping Cart</p>
-  </form>
+	</div>
+	<div class="di">
+		<label for="firstName">First name</label>
+	</div>
+	<div class="form-label-group">
+
+		<input type="text" class="form-control" id="firstName" name="firstName" placeholder="" value="" required [(ngModel)]="firstName">
+
+	</div>
+	<div class="div">
+		<label for="lastName">Last name</label>
+	</div>
+	<div class="form-label-group">
+
+		<input type="text" class="form-control" id="lastName" name="lastName" placeholder="" value="" required [(ngModel)]="lastName">
+	</div>
+
+	<div class="div">
+		<label for="city">City</label>
+	</div>
+	<div class="form-label-group">
+
+		<input type="text" class="form-control" id="city" name="city" placeholder="" value="" required [(ngModel)]="city">
+	</div>
+
+	<div class="div">
+		<label for="postalcode">Postal code</label>
+	</div>
+	<div class="form-label-group">
+
+		<input type="text" class="form-control" id="postalcode" name="postalcode" placeholder="" value="" required [(ngModel)]="postalcode">
+	</div>
+	<div class="div">
+		<label for="telephone">Telephone</label>
+	</div>
+	<div class="form-label-group">
+
+		<input type="text" class="form-control" id="telephone" name="telephone" placeholder="" value="" required [(ngModel)]="telephone">
+	</div>
+	<div class="div">
+		<label for="description">Address</label>
+	</div>
+	<div class="form-label-group">
+
+		<input type="text" class="form-control" id="description" name="description" placeholder="" value="" required [(ngModel)]="description">
+	</div>
+
+	<button class="btn btn-lg btn-primary btn-block" (click)="generateClient()" type="submit">Sign in</button>
+	<p class="mt-5 mb-3 text-muted text-center">&copy; Shopping Cart</p>
+</form>
