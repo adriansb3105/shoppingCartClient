@@ -9,6 +9,7 @@ import { ShoppingCart } from "./model/ShoppingCart.model";
 import { Bill } from "./model/Bill.model";
 import { Client } from "./model/Client.model";
 import { Employee } from "./model/Employee.model";
+import { ProductImage } from "./model/ProductImage.model";
 
 @Injectable()
 export class LogicService {
@@ -72,6 +73,31 @@ export class LogicService {
             this.http.post(this.url + 'order_details/', orderDetails[key], { headers: this.headers})
             .pipe(map(response => response.json())).subscribe(data => {console.log(data);});;
         }
+    }
+
+    generateProduct(product: Product): Observable<Product>{
+        return this.http.post(this.url + 'products/', product, { headers: this.headers})
+        .pipe(map(response => response.json()));
+    }
+
+    generateProductImage(productImage: ProductImage): Observable<ProductImage>{
+        return this.http.post(this.url + 'product_images/', productImage, { headers: this.headers})
+        .pipe(map(response => response.json()));
+    }
+
+    getProductImages(): Observable<ProductImage[]>{
+        return this.http.get(this.url + "product_images/", { headers: this.headers})
+        .pipe(map(response => response.json()))
+    }
+
+    getCategories(): Observable<Category[]>{
+        return this.http.get(this.url + "categories/", { headers: this.headers})
+        .pipe(map(response => response.json()))
+    }
+
+    generateCategory(category: Category): Observable<Category>{
+        return this.http.post(this.url + 'categories/', category, { headers: this.headers})
+        .pipe(map(response => response.json()));
     }
 
     setClient(c): void{

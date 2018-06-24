@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LogicService } from './logic.service';
 
 @Component({
 	selector: 'app-root',
@@ -6,57 +7,17 @@ import { Component } from '@angular/core';
 	styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-	/*
-	public currentUser: string;
-	public title = ' shoping cart';
-	public description = 'descripcion';
-	public manager: boolean = false;
-	public client: boolean = false;
-	public managerNavBar: boolean = true;
-	public clientNavBar: boolean = true;
-	public loggedIn: boolean = true;
-	*/
-	//public currentEmployee: Employee;
-	//public currentClient: Client;
+	isAdmin: boolean;
 
-	constructor() {
+	constructor(private logicService: LogicService) {
 		console.log("app");
+		if(this.logicService.getEmployee()){
+			this.isAdmin = true;
+		}else{
+			this.isAdmin = false;
+		}
 	}
 
 	login(): void {
-
-		//// traerse al empleado o al admin
-
-
-		//if(this.currentEmployee.employeeId){
-		//  console.log("admin");
-		// this.currentUser= this.currentEmployee.firstName;
-		//this.managerNavBar=true;
-		// this.loggedIn=true;
-
-
-		// }else if(this.currentClient.clientId){
-
-		// console.log("client");
-		//  this.currentUser=this.currentClient.firstName;
-		//  this.clientNavBar=true;
-		//  this.loggedIn=true
-		//}
-
-		//}
-
-		//loggedout():void{
-		//
-		//   this.manager=false;
-		//  this.client=false;
-		//   this.loggedIn =false;
-		//   this.managerNavBar=false;
-		//   this.clientNavBar= false;
-		//   this.currentEmployee=null;
-		//   this.currentClient=null;
-
-		//}
-
-
 	}
 }

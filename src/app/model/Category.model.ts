@@ -1,10 +1,11 @@
 
-export class Category{
-	public name:String;
-  public  deleted:boolean;
-  constructor(name?:String,deleted?:boolean){
-    this.deleted=deleted;
-    this.name=name;
-  }
-	
+export class Category {
+
+	public categoryId: number;
+	public name: String;
+	public deleted: boolean;
+
+	constructor(name?: String) {
+		this.name = name;
+	}
 }

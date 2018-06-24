@@ -27,17 +27,19 @@
 					<td>{{product.category.name}}</td>
 					<td>
 						<div style="width:100px;height:100px;">
-							<div id="carouselControls" class="carousel slide" data-ride="carousel">
-								<div class="carousel-inner">
-									<div class="carousel-item active" *ngFor="let image of product.productImages">
-										<img class="d-block w-100" src="{{image.url}}" alt="Slide">
+							<div id="{{product.productId}}" class="carousel slide" data-ride="carousel">
+								<div class="carousel-inner" >
+
+									<div class="carousel-item" *ngFor="let image of getProductImages(product.productId); let isFirst = first" [class.active]="isFirst">
+										<img class="d-block w-100" src="{{ image.url }}" alt="Slide">
 									</div>
 								</div>
-								<a class="carousel-control-prev" href="#carouselControls" role="button" data-slide="prev">
+
+								<a class="carousel-control-prev" href="#{{product.productId}}" role="button" data-slide="prev">
 									<span class="carousel-control-prev-icon" aria-hidden="true"></span>
 									<span class="sr-only">Previous</span>
 								</a>
-								<a class="carousel-control-next" href="#carouselControls" role="button" data-slide="next">
+								<a class="carousel-control-next" href="#{{product.productId}}" role="button" data-slide="next">
 									<span class="carousel-control-next-icon" aria-hidden="true"></span>
 									<span class="sr-only">Next</span>
 								</a>

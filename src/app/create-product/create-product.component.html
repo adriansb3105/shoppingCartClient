@@ -1,67 +1,62 @@
 <form class="form-signin">
-    <div class="text-center mb-4">
-      <h1 class="h3 mb-3 font-weight-normal">Insert Product</h1>
-     
-    </div>
-    
-<div class="di">
-    <label for="firstName">Name</label>
-</div>
-    <div class="form-label-group">
-      
-        <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
-        
-      </div>
+	<div class="text-center mb-4">
+		<h1 class="h3 mb-3 font-weight-normal">Insert Product</h1>
 
-        <div class="div">
-                <label for="lastName">Image urls</label>
-        </div>
-        <div class="form-label-group">
-                
-            <input type="text" class="form-control" id="city" placeholder="" value="" required>
-        </div>
-        <div class="form-label-group">
-                
-                <input type="text" class="form-control" id="city" placeholder="" value="" required>
-        </div>
-        <div class="form-label-group">
-                
-                <input type="text" class="form-control" id="city" placeholder="" value="" required>
-        </div>
+	</div>
 
-        <div class="div">
-             <label for="lastName">Price</label>
-        </div>
-        <div class="form-label-group">
-                        
-            <input type="text" class="form-control" id="postalcode" placeholder="" value="" required>
-        </div>
-        
-           <div class="div">
-                <label for="lastName">Description</label>
-           </div>
-           <div class="form-label-group">
-                           
-               <input type="text" class="form-control" id="description" placeholder="" value="" required>
-           </div>
+	<div class="div">
+		<label for="name">Name</label>
+	</div>
+	<div class="form-label-group">
+		<input type="text" class="form-control" id="name" name="name" placeholder="" value="" required [(ngModel)]="name">
+	</div>
 
-         <div class="div">
+	<div class="div">
+		<label for="url">Image urls</label>
+	</div>
+	<div class="form-label-group">
 
-                <label for="country">Category</label>
-            </div>
-            <div class="form-label-group">
-                <select class="custom-select d-block w-100" id="country" required>
-                  <option value="">Choose...</option>
-                  <option>Plantas</option>
-                </select>
-                </div>
-       
-             
-         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>   
-            <div>
-                
-            </div>
+		<input type="text" class="form-control" id="url1" name="url1" placeholder="" value="" required [(ngModel)]="url1">
+	</div>
+	<div class="form-label-group">
 
-   
-    <p class="mt-5 mb-3 text-muted text-center">&copy; Shopping Cart</p>
-  </form>
+		<input type="text" class="form-control" id="url2" name="url2" placeholder="" value="" required [(ngModel)]="url2">
+	</div>
+	<div class="form-label-group">
+
+		<input type="text" class="form-control" id="url3" name="url3" placeholder="" value="" required [(ngModel)]="url3">
+	</div>
+
+	<div class="div">
+		<label for="price">Price</label>
+	</div>
+	<div class="form-label-group">
+		<input type="text" class="form-control" id="price" name="price" placeholder="" value="" required [(ngModel)]="price">
+	</div>
+
+	<div class="div">
+		<label for="description">Description</label>
+	</div>
+	<div class="form-label-group">
+
+		<input type="text" class="form-control" id="description" name="description" placeholder="" value="" required [(ngModel)]="description">
+	</div>
+
+	<div class="div">
+		<label for="category">Category</label>
+	</div>
+	<div class="form-label-group">
+		<select class="custom-select d-block w-100" id="categoryId" name="categoryId" required [(ngModel)]="categoryId">
+			<option *ngFor="let c of getCategories()" value="{{ c.categoryId }}">
+					{{ c.name }}
+			</option>
+		</select>
+	</div>
+
+	<button class="btn btn-lg btn-primary btn-block" type="submit" (click)="generateProduct()">Create</button>
+	<div>
+
+	</div>
+
+	<p class="mt-5 mb-3 text-muted text-center">&copy; Shopping Cart</p>
+</form>

@@ -6,6 +6,8 @@ import { ShoppingCart } from '../model/ShoppingCart.model';
 import { Client } from '../model/Client.model';
 import { Router } from '@angular/router';
 import { FilterPipe } from '../filter.pipe';
+import Swal from 'sweetalert2';
+import { ProductImage } from '../model/ProductImage.model';
 
 @Component({
 	selector: 'app-products-by-name',
@@ -15,6 +17,7 @@ import { FilterPipe } from '../filter.pipe';
 
 export class ProductsByNameComponent implements OnInit {
 	public products: Array<Product>;
+	public productsImages: Array<ProductImage>;
 	public shoppingCart: ShoppingCart;
 	shoppingCartId: number;
     dateCreated:String;
@@ -24,10 +27,11 @@ export class ProductsByNameComponent implements OnInit {
 	
 	
 	constructor(private logicService: LogicService, private router: Router, private filterPipe: FilterPipe) {
-		if(!this.logicService.isLoggedIn()){
-			this.router.navigate(['/login']);
-		}
+		//if(!this.logicService.isLoggedIn()){
+		//	this.router.navigate(['/login']);
+		//}
 		this.products = new Array;
+		this.productsImages = new Array;
 	}
 
 	ngOnInit() {
@@ -36,10 +40,18 @@ export class ProductsByNameComponent implements OnInit {
 			this.products = data;
 			this.isProductEmpty = false;
 		});
+
+		this.logicService.getProductImages().subscribe(data => {
+			this.productsImages = data;
+		});
 	}
 
 	getProducts(): Product[] {
 		return this.products;
+	}
+
+	getProductImages(productId): ProductImage[]{
+		return this.productsImages.filter(image => image.product.productId == productId);
 	}
 
 	addToCart(product: Product) {
@@ -47,6 +59,8 @@ export class ProductsByNameComponent implements OnInit {
 
 		this.shoppingCart = new ShoppingCart(this.shoppingCartId, 0, this.dateCreated,
 					this.deleted, this.client, product);
-		this.logicService.addToCart(this.shoppingCart).subscribe(data => {alert("Se ha agregado el producto");});
+		this.logicService.addToCart(this.shoppingCart).subscribe(data => {
+			Swal('Done', 'The product has been added!', 'success');
+		});
 	}
 }
