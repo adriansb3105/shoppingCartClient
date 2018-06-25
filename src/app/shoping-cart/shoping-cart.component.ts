@@ -7,6 +7,7 @@ import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { Bill } from '../model/Bill.model';
 import { Client } from '../model/Client.model';
+import { ProductImage } from '../model/ProductImage.model';
 
 @Component({
 	selector: 'app-shoping-cart',
@@ -15,9 +16,11 @@ import { Client } from '../model/Client.model';
 })
 export class ShopingCartComponent implements OnInit {
 	public shoppingCarts: Array<ShoppingCart>;
+	public productsImages: Array<ProductImage>;
 	public orderDetails;
 	private orderDetail: OrderDetail;
 	isShoppingCartEmpty: boolean;
+	showCarts: boolean;
 
 
 	constructor(private logicService: LogicService, private router: Router) {
@@ -26,14 +29,30 @@ export class ShopingCartComponent implements OnInit {
 		}
 		this.shoppingCarts = new Array;
 		this.orderDetails = {};
+		this.productsImages = new Array;
 	}
 
 	ngOnInit() {
 		this.isShoppingCartEmpty = true;
+		this.showCarts = false;
 		this.logicService.getShoppingCarts().subscribe(data => {
-			this.shoppingCarts = data;
+			let clientId = this.logicService.getClient().clientId;
+
+			this.shoppingCarts = data.filter((cart) => cart.client.clientId == clientId);
 			this.isShoppingCartEmpty = false;
+
+			if(this.shoppingCarts.length != 0){
+				this.showCarts = true;
+			}
 		});
+
+		this.logicService.getProductImages().subscribe(data => {
+			this.productsImages = data;
+		});
+	}
+
+	getProductImages(productId): ProductImage[]{
+		return this.productsImages.filter(image => image.product.productId == productId);
 	}
 
 	getShoppingCarts(): ShoppingCart[] {

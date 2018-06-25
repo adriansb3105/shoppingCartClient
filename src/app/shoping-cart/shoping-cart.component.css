@@ -8,7 +8,7 @@
 }
 
 .center{
-    display: inline-block;
+    text-align: center;
 }
 
 table tbody tr td input[type="number"] {
