@@ -47,6 +47,11 @@ export class LogicService {
         } ));
     }
     
+    productById(id): Observable<Product> {
+        return this.http.get(this.url + "products/" + id, { headers: this.headers})
+        .pipe(map(response => response.json()))
+    }
+
     productsByName(): Observable<Product[]> {
         return this.http.get(this.url + "products/", { headers: this.headers})
         .pipe(map(response => response.json()))
@@ -98,6 +103,11 @@ export class LogicService {
     generateCategory(category: Category): Observable<Category>{
         return this.http.post(this.url + 'categories/', category, { headers: this.headers})
         .pipe(map(response => response.json()));
+    }
+
+    deleteProduct(id){
+        return this.http.delete(this.url + "products/6", { headers: this.headers})
+        .pipe(map(response => response.json()))
     }
 
     setClient(c): void{

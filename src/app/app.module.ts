@@ -14,10 +14,7 @@ import { RetrieveProductComponent } from './retrieve-product/retrieve-product.co
 import { ProductsByNameComponent } from './products-by-name/products-by-name.component';
 import { CreateCategoryComponent } from './create-category/create-category.component';
 import { UpdateCategoryComponent } from './update-category/update-category.component';
-import { DeleteCategoryComponent } from './delete-category/delete-category.component';
 import { CreateProductComponent } from './create-product/create-product.component';
-import { UpdateProductComponent } from './update-product/update-product.component';
-import { DeleteProductComponent } from './delete-product/delete-product.component';
 import { ShopingCartComponent } from './shoping-cart/shoping-cart.component';
 import { HomeManagerComponent } from './home-manager/home-manager.component';
 import { HomeClientComponent } from './home-client/home-client.component';
@@ -53,18 +50,15 @@ const appRoutes: Routes = [
 	{ path: 'business-information', component: BusinesInformationComponent },
 	{ path: 'create-category', component: CreateCategoryComponent },
 	{ path: 'create-product', component: CreateProductComponent },
-	{ path: 'delete-category', component: DeleteCategoryComponent },
-	{ path: 'insert-inventory', component: InsertInventoryComponent },
+		{ path: 'insert-inventory', component: InsertInventoryComponent },
 	{ path: 'manage-inventory', component: ManageInventoryComponent },
 	{ path: 'business-information', component: BusinesInformationComponent },
 	{ path: 'create-category', component: CreateCategoryComponent },
 	{ path: 'create-product', component: CreateProductComponent },
-	{ path: 'delete-product', component: DeleteProductComponent },
-	{ path: 'retrieve-category', component: RetrieveCategoryComponent },
+		{ path: 'retrieve-category', component: RetrieveCategoryComponent },
 	{ path: 'retrieve-product', component: RetrieveProductComponent },
 	{ path: 'shopingcart-reports', component: ShopingcartReportsComponent },
 	{ path: 'update-category', component: UpdateCategoryComponent },
-	{ path: 'update-product', component: UpdateProductComponent },
 	{ path: 'home-manager', component: HomeManagerComponent },
 	{ path: 'home-client', component: HomeClientComponent },
 	{ path: 'logout', component: LogoutComponent },
@@ -89,10 +83,7 @@ const appRoutes: Routes = [
 		LoginComponent,
 		CreateCategoryComponent,
 		UpdateCategoryComponent,
-		DeleteCategoryComponent,
 		CreateProductComponent,
-		UpdateProductComponent,
-		DeleteProductComponent,
 		ManageInventoryComponent,
 		ShopingcartReportsComponent,
 		BusinesInformationComponent,

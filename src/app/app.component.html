@@ -28,36 +28,32 @@
 			</li>
 			<li class="nav-item">
 			</li>
-			
-			<li class="nav-item">
+
+			<li class="nav-item" *ngIf="isLoggedIn && !isAdmin">
 				<a class="nav-link" routerLink="/products">Products</a>
 			</li>
-			<li class="nav-item">
+			<li class="nav-item" *ngIf="isLoggedIn && !isAdmin">
 				<a class="nav-link" routerLink="/shoping-cart">Shopping Cart</a>
-
 			</li>
-			<li class="nav-item">
+
+			<li class="nav-item" *ngIf="!isLoggedIn">
 				<a class="nav-link" routerLink="/sign-in">Sing in</a>
 			</li>
-			<!-- home client-->
 
-			<li class="nav-item dropdown">
+			<li class="nav-item dropdown" *ngIf="isAdmin">
 				<a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					Products Administration
 				</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink1">
 					<a class="dropdown-item" routerLink="/create-product">Create Product</a>
-					<a class="dropdown-item" routerLink="/update-product">Update Product</a>
-					<a class="dropdown-item" routerLink="/delete-product">Delete Product</a>
 				</div>
 			</li>
-			<li class="nav-item dropdown">
+			<li class="nav-item dropdown" *ngIf="isAdmin">
 				<a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					Categories Admministration
 				</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink2">
 					<a class="dropdown-item" routerLink="/create-category">Create Category</a>
-					<a class="dropdown-item" routerLink="/delete-category">Delete Categories</a>
 				</div>
 			</li>
 			<li class="nav-item dropdown">
@@ -69,22 +65,17 @@
 					<a class="dropdown-item" routerLink="/manage-inventory">Manage Inventory</a>
 				</div>
 			</li>
-			<li class="nav-item">
+			<li class="nav-item" *ngIf="isAdmin">
 				<a class="nav-link" routerLink="/shopingcart-reports">Reports</a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" routerLink="/business-information">Business Information</a>
 			</li>
 
-			<!-- client home-->
-			<!--<li class="nav-item" *ngIf="clientNavBar">
-        <a class="nav-link" routerLink="/update-client-information">Update your information</a>
-      </li>
-    -->
-			<li class="nav-item">
+			<li class="nav-item" *ngIf="isLoggedIn && !isAdmin">
 				<a class="nav-link" routerLink="/my-bills">My bills</a>
 			</li>
-			<li class="nav-item">
+			<li class="nav-item" *ngIf="isLoggedIn">
 				<a class="nav-link" routerLink="/logout">Logout</a>
 			</li>
 
@@ -94,5 +85,5 @@
 </nav>
 
 <div class="borders">
-		<router-outlet></router-outlet>
+	<router-outlet></router-outlet>
 </div>

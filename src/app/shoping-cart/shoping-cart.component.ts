@@ -52,7 +52,21 @@ export class ShopingCartComponent implements OnInit {
 	}
 
 	getProductImages(productId): ProductImage[]{
-		return this.productsImages.filter(image => image.product.productId == productId);
+		let images: Array<ProductImage> = new Array;
+
+		for(let i = 0; i < this.productsImages.length; i++){
+			if(this.productsImages[i].product.productId == productId){
+				images.push(this.productsImages[i]);
+			}
+		}
+
+		if(images.length == 0){
+			images.push(new ProductImage("https://vignette.wikia.nocookie.net/simpsons/images/6/60/No_Image_Available.png/revision/latest/scale-to-width-down/480?cb=20170219125728", null));
+		}
+
+		return images;
+
+		//return this.productsImages.filter(image => image.product.productId == productId);
 	}
 
 	getShoppingCarts(): ShoppingCart[] {

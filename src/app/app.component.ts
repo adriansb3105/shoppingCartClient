@@ -8,8 +8,10 @@ import { LogicService } from './logic.service';
 })
 export class AppComponent {
 	isAdmin: boolean;
+	isLoggedIn: boolean;
 
 	constructor(private logicService: LogicService) {
+		this.isLoggedIn = this.logicService.isLoggedIn();
 		console.log("app");
 		if(this.logicService.getEmployee()){
 			this.isAdmin = true;

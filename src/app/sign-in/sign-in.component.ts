@@ -10,7 +10,6 @@ import { Client } from '../model/Client.model';
 	styleUrls: ['./sign-in.component.css']
 })
 export class SignInComponent implements OnInit {
-
 	private inputEmail: String;
 	private inputPassword: String;
 	private firstName: String;
