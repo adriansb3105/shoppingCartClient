@@ -24,7 +24,7 @@ export class ShopingCartComponent implements OnInit {
 
 
 	constructor(private logicService: LogicService, private router: Router) {
-		if (!this.logicService.isLoggedIn()) {
+		if (this.logicService.isLoggedIn() == 'false') {
 			this.router.navigate(['/login']);
 		}
 		this.shoppingCarts = new Array;

@@ -11,15 +11,17 @@ export class AppComponent {
 	isLoggedIn: boolean;
 
 	constructor(private logicService: LogicService) {
-		this.isLoggedIn = this.logicService.isLoggedIn();
-		console.log("app");
+		if(this.logicService.isLoggedIn() == 'true'){
+			this.isLoggedIn = true;
+		}else{
+			this.isLoggedIn = false;
+		}
+		
+		
 		if(this.logicService.getEmployee()){
 			this.isAdmin = true;
 		}else{
 			this.isAdmin = false;
 		}
-	}
-
-	login(): void {
 	}
 }

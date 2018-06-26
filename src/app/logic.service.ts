@@ -100,6 +100,11 @@ export class LogicService {
         .pipe(map(response => response.json()))
     }
 
+    getBills(): Observable<Bill[]>{
+        return this.http.get(this.url + "bills/", { headers: this.headers})
+        .pipe(map(response => response.json()))
+    }
+
     generateCategory(category: Category): Observable<Category>{
         return this.http.post(this.url + 'categories/', category, { headers: this.headers})
         .pipe(map(response => response.json()));
@@ -127,15 +132,17 @@ export class LogicService {
     }
 
     setLoggedIn(): void{
-        LogicService.loggedIn = true;
+        //LogicService.loggedIn = true;
+        window.localStorage.setItem('login', 'true');
     }
 
-    isLoggedIn(): boolean{
-        return LogicService.loggedIn;
+    isLoggedIn(): String{
+        return window.localStorage.getItem('login');
     }
 
     logout(): void{
-        LogicService.loggedIn = false;
+        //LogicService.loggedIn = false;
+        window.localStorage.setItem('login', 'false');
         window.localStorage.removeItem("client");   
     }
 }

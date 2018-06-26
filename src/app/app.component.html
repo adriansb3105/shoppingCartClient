@@ -29,10 +29,10 @@
 			<li class="nav-item">
 			</li>
 
-			<li class="nav-item" *ngIf="isLoggedIn && !isAdmin">
+			<li class="nav-item">
 				<a class="nav-link" routerLink="/products">Products</a>
 			</li>
-			<li class="nav-item" *ngIf="isLoggedIn && !isAdmin">
+			<li class="nav-item">
 				<a class="nav-link" routerLink="/shoping-cart">Shopping Cart</a>
 			</li>
 
@@ -40,7 +40,7 @@
 				<a class="nav-link" routerLink="/sign-in">Sing in</a>
 			</li>
 
-			<li class="nav-item dropdown" *ngIf="isAdmin">
+			<li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					Products Administration
 				</a>
@@ -48,7 +48,7 @@
 					<a class="dropdown-item" routerLink="/create-product">Create Product</a>
 				</div>
 			</li>
-			<li class="nav-item dropdown" *ngIf="isAdmin">
+			<li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					Categories Admministration
 				</a>
@@ -56,7 +56,7 @@
 					<a class="dropdown-item" routerLink="/create-category">Create Category</a>
 				</div>
 			</li>
-			<li class="nav-item dropdown">
+			<!--<li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					Inventory Managment
 				</a>
@@ -64,7 +64,7 @@
 					<a class="dropdown-item" routerLink="/insert-inventory">Insert Inventory</a>
 					<a class="dropdown-item" routerLink="/manage-inventory">Manage Inventory</a>
 				</div>
-			</li>
+			</li>-->
 			<li class="nav-item" *ngIf="isAdmin">
 				<a class="nav-link" routerLink="/shopingcart-reports">Reports</a>
 			</li>
@@ -72,10 +72,10 @@
 				<a class="nav-link" routerLink="/business-information">Business Information</a>
 			</li>
 
-			<li class="nav-item" *ngIf="isLoggedIn && !isAdmin">
+			<li class="nav-item">
 				<a class="nav-link" routerLink="/my-bills">My bills</a>
 			</li>
-			<li class="nav-item" *ngIf="isLoggedIn">
+			<li class="nav-item">
 				<a class="nav-link" routerLink="/logout">Logout</a>
 			</li>
 

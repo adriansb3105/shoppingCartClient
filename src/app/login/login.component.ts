@@ -19,9 +19,9 @@ export class LoginComponent implements OnInit {
 	isEmployee: boolean;
 
 	constructor(private route: ActivatedRoute, private router: Router, private logicService: LogicService) {
-		console.log('login - isLogged', this.logicService.isLoggedIn());
+		
 		this.correctUser = true;
-		if(this.logicService.isLoggedIn()){
+		if(this.logicService.isLoggedIn() == 'true'){
 			if(this.logicService.getClient()){
 				this.router.navigate(['/home-client']);
 			}else if(this.logicService.getEmployee()){

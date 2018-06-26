@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
 
 	constructor(private logicService: LogicService, private router: Router) {
-		if(this.logicService.isLoggedIn()){
+		if(this.logicService.isLoggedIn() == 'true'){
 			if(this.logicService.getEmployee()){
 				this.router.navigate(['/home-manager']);
 			}else if(this.logicService.getClient()){
