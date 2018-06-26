@@ -32,7 +32,7 @@
 						(change)="onQuantityChange(cart.shoppingCartId, $event)"/>
 					</td>
 
-					<td>{{cart.dateCreated}}</td>
+					<td>{{cart.dateCreated | date : "fullDate" }}</td>
 					<td>{{cart.product.name}}</td>
 
 					<td>
